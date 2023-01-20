@@ -9,6 +9,16 @@ canvas.height = window.innerHeight - 100;
 
 
 /**
+ * image resources for dinosaur and cactus
+ */
+var dinosaurImage = new Image();
+dinosaurImage.src = 'resources/dinosaur.png';
+
+var cactusImage = new Image();
+cactusImage.src = 'resources/cactus.png';
+
+
+/**
  * dinosaur: info of main character in this game
  */
 var dinosaur = {
@@ -17,8 +27,7 @@ var dinosaur = {
     width: 50,
     height: 50,
     draw() {
-        context.fillStyle = 'blue';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(dinosaurImage, this.x, this.y, this.width, this.height);
     }
 }
 
@@ -34,8 +43,7 @@ class Cactus {
         this.height = 50;
     }
     draw() {
-        context.fillStyle = 'green';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(cactusImage, this.x, this.y, this.width, this.height);
     }
 }
 
