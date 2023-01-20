@@ -1,5 +1,3 @@
-
-
 /**
  * draw a 2D canvas on the web browser
  */
@@ -48,9 +46,10 @@ class Cactus {
 var frame_timer = 0;
 var cactuses = [];
 var jump_timer = 0;
+var animation;
 
 function executePerFrame() {
-    requestAnimationFrame(executePerFrame)
+    animation = requestAnimationFrame(executePerFrame)
     frame_timer++;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -65,6 +64,7 @@ function executePerFrame() {
         if (cactus.x < 0) {
             o.splice(i, 1);
         }
+        cactus.x--;
 
         is_collided(dinosaur, cactus);
 
@@ -106,3 +106,17 @@ document.addEventListener('keydown', function(e) {
         jump = true;
     }
 })
+
+
+/**
+ * is dinosaur collided to the cactus?
+ */
+function is_collided(dinosaur, cactus) {
+    var x_diff = cactus.x - (dinosaur.x + dinosaur.width);
+    var y_diff = cactus.y - (dinosaur.y + dinosaur.height);
+
+    if (x_diff < 0 && y_diff < 0) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        cancelAnimationFrame(animation);
+    }
+}
